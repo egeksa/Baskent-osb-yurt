@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Başkent OSB MTAL Yurt Bilgileri</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #121212; color: #fff; padding: 15px; margin: 0; }
+        .card { background: #1e1e1e; padding: 15px; border-radius: 10px; margin-bottom: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
+        h2 { font-size: 18px; margin-top: 0; }
+        select, input, button { width: 100%; padding: 10px; margin-top: 5px; border-radius: 5px; border: 1px solid #444; background: #2d2d2d; color: #fff; box-sizing: border-box; }
+        .notification { background: #ff9800; color: #000; font-weight: bold; padding: 10px; border-radius: 5px; margin-top: 10px; display: none; }
+        ul { padding-left: 20px; margin: 5px 0; }
+    </style>
+</head>
+<body>
+    <h1 style="font-size: 20px; text-align: center;">Başkent OSB MTAL Yurt Bilgileri</h1>
+    <div class="card">
+        <h2>Günün Menüsü (Pansiyon Sitesi)</h2>
+        <ul id="menu-list">
+            <li>Mercimek Çorbası</li>
+            <li>Köfte</li>
+            <li>Pirinç Pilavı</li>
+            <li>Ayran</li>
+        </ul>
+        <div id="notif" class="notification">🔊 BİLDİRİM: Bugün sevdiğin yemek var!</div>
+    </div>
+
+    <div class="card">
+        <h2>En Sevdiğin Yemeği Yaz</h2>
+        <input type="text" id="fav-food" value="Köfte" placeholder="Örn: Köfte, Mantı...">
+        <button onclick="kontrolEt()" style="background: #4CAF50; color: white; border: none; font-weight: bold; cursor: pointer; margin-top: 10px;">Kaydet ve Kontrol Et</button>
+    </div>
+
+    <div class="card">
+        <h2>📖 Etüt ve Yemek Saatleri</h2>
+        <label>Kaç dk önce ses gelsin?</label>
+        <select id="etut-oncesi">
+            <option>5 dk önce</option><option selected>10 dk önce</option><option>15 dk önce</option><option>20 dk önce</option><option>25 dk önce</option><option>30 dk önce</option>
+        </select>
+        <label style="margin-top:10px; display:block;">Geç kalınca ses uyarısı:</label>
+        <select id="etut-gec">
+            <option>2 dk sonra</option><option selected>5 dk sonra</option><option>8 dk sonra</option>
+        </select>
+    </div>
+
+    <div class="card">
+        <h2>🏫 Okul Saati Ayarları</h2>
+        <label>Okuldan önce ses gelsin:</label>
+        <select id="okul-oncesi">
+            <option>5 dk önce</option><option>10 dk önce</option><option selected>15 dk önce</option><option>20 dk önce</option><option>25 dk önce</option><option>30 dk önce</option><option>35 dk önce</option><option>40 dk önce</option>
+        </select>
+        <label style="margin-top:10px; display:block;">Geç kalınca ses uyarısı:</label>
+        <select id="okul-gec">
+            <option>2 dk sonra</option><option selected>5 dk sonra</option><option>10 dk sonra</option><option>15 dk sonra</option>
+        </select>
+    </div>
+
+    <script>
+        const menu = ["Mercimek Çorbası", "Köfte", "Pirinç Pilavı", "Ayran"];
+        function kontrolEt() {
+            let fav = document.getElementById('fav-food').value.trim().toLowerCase();
+            let notif = document.getElementById('notif');
+            let bulundu = menu.some(yemek => yemek.toLowerCase().includes(fav));
+            if(bulundu && fav !== "") {
+                notif.style.display = "block";
+            } else {
+                notif.style.display = "none";
+            }
+        }
+        kontrolEt();
+    </script>
+</body>
+</html>
